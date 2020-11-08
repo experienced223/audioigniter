@@ -199,16 +199,16 @@
   flex: none;
   vertical-align: middle;
   color: #ffffff;
-  background-color: #f70f5d;
+  background-color: #67686B;
   opacity: 1;
   -webkit-transition: opacity 1.5s ease;
   transition: opacity 1.5s ease;
   padding: 0;
 }
 
-.ai-wrap .ai-audio-control:hover, .ai-wrap .ai-audio-control:focus {
-  border: 0;
-  background-color: #f70f5d;
+.ai-wrap .ai-audio-control:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .ai-wrap .ai-audio-control.ai-audio-playing svg {
@@ -221,6 +221,7 @@
   position: relative;
   left: 2px;
   top: 1px;
+  margin: auto;
 }
 
 .ai-wrap .ai-track-info {
@@ -295,7 +296,11 @@
   position: relative;
   height: 5px;
   cursor: pointer;
-  background-color: #3e3e3e;
+  background-color: #67686B;
+}
+
+.ai-wrap .ai-track-progress-bar:focus {
+  background-color: #3B393D;
 }
 
 .ai-wrap .ai-track .ai-track-progress-bar {
@@ -318,7 +323,7 @@
   left: 0;
   height: 100%;
   pointer-events: none;
-  background-color: #f70f5d;
+  background-color: #3B393D;
   -webkit-transition: width .28s ease;
   transition: width .28s ease;
 }
@@ -466,6 +471,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  display: none;
   width: 100%;
   opacity: 1;
   -webkit-transition: opacity 0.36s ease;
@@ -483,12 +489,12 @@
 }
 
 .ai-wrap .ai-btn {
-  width: 32px;
+  width: 110px;
   height: 34px;
   font-size: 14px;
   padding: 0;
   background-image: none;
-  background-color: #3e3e3e;
+  background-color: #67686B;
   color: #ffffff;
   -webkit-transition: color 0.18s ease;
   transition: color 0.18s ease;
@@ -507,7 +513,6 @@
 }
 
 .ai-wrap .ai-btn:hover {
-  color: #f70f5d;
   background-color: #3e3e3e;
   border: 0;
 }
@@ -546,6 +551,30 @@
   font-size: 11px;
   font-weight: bold;
   letter-spacing: -.05em;
+}
+
+.ai-wrap .ai-tracklist-next {
+  margin-left: 20px;
+}
+
+.ai-wrap .ai-tracklist-next:active {
+  background-color: #CB5019;
+}
+
+.ai-wrap .ai-tracklist-next:focus {
+  background-color: #CB5019;
+  outline: none;
+  box-shadow: none;
+}
+
+.ai-wrap .ai-tracklist-prev:active {
+  background-color: #3B393D;
+}
+
+.ai-wrap .ai-tracklist-prev:focus {
+  background-color: #3B393D;
+  outline: none;
+  box-shadow: none;
 }
 
 .ai-wrap .ai-tracklist-wrap {
@@ -815,6 +844,11 @@
   opacity: 0.5;
 }
 
+.ai-wrap.ai-is-loading .ai-audio-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .ai-wrap.ai-is-loading .ai-control-wrap-thumb::after {
   opacity: 1;
 }
@@ -1015,7 +1049,7 @@
   display: none;
 }
 
-.ai-modal-dismiss:hover, .ai-modal-dismiss:active, .ai-modal-dismiss:focus {
+.ai-modal-dismiss:hover, .ai-modal-dismiss:active {
   background: none;
   box-shadow: none;
   border: 0;

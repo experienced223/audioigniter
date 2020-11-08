@@ -26,7 +26,7 @@ const soundProvider = (Player, events) => {
         repeatingTrackIndex: null,
         isMultiSoundDisabled: multiSoundDisabled(),
       };
-
+      this.clearTrack = this.clearTrack.bind(this);
       this.playTrack = this.playTrack.bind(this);
       this.pauseTrack = this.pauseTrack.bind(this);
       this.togglePlay = this.togglePlay.bind(this);
@@ -114,6 +114,7 @@ const soundProvider = (Player, events) => {
       const currentTrack = tracks[activeIndex] || {};
 
       return {
+        clearTrack: this.clearTrack,
         playTrack: this.playTrack,
         pauseTrack: this.pauseTrack,
         togglePlay: this.togglePlay,
@@ -143,7 +144,7 @@ const soundProvider = (Player, events) => {
       const { position } = this.state;
       const { skipAmount } = this.props;
       const amount = parseInt(skipAmount, 10) * 1000;
-
+      console.log(amount);
       this.setPosition(position + amount * direction);
     }
 
@@ -185,6 +186,7 @@ const soundProvider = (Player, events) => {
     };
 
     playTrack(index, event) {
+      const { position } = this.state;
       if (event) {
         event.preventDefault();
       }
@@ -197,7 +199,7 @@ const soundProvider = (Player, events) => {
 
       this.setState(() => ({
         activeIndex: index,
-        position: 0,
+        position: position,
         playStatus: Sound.status.PLAYING,
       }));
 
@@ -218,24 +220,37 @@ const soundProvider = (Player, events) => {
         this.setState(() => ({ playStatus: Sound.status.PAUSED }));
       }
     }
+    clearTrack() {
+      const element = document.getElementsByClassName("ai-audio-control");
+        for (let i = 0; i < element.length; i++) {
+          if ($(element[i]).hasClass("ai-audio-playing")){
+            element[i].click();
 
-    togglePlay(index, event) {
+          }
+        }
+    }
+    togglePlay(event) {
       if (event) {
         event.preventDefault();
       }
 
       const { activeIndex } = this.state;
 
-      if (typeof index === 'number' && index !== activeIndex) {
-        this.playTrack(index);
-        return;
+      // if (typeof index === 'number' && index !== activeIndex) {
+      //   this.playTrack(index);
+      //   return;
+      // }
+      if ($(event.target).hasClass('ai-audio-playing') || $(event.target).parents(".ai-audio-control").hasClass('ai-audio-playing')){
+        
+      }else{
+        this.clearTrack();
       }
 
       this.setState(({ playStatus, isMultiSoundDisabled }) => {
         if (playStatus !== Sound.status.PLAYING && isMultiSoundDisabled) {
           window.soundManager.pauseAll();
         }
-
+        
         return {
           playStatus:
             playStatus === Sound.status.PLAYING
@@ -245,14 +260,32 @@ const soundProvider = (Player, events) => {
       });
     }
 
-    nextTrack() {
+    nextTrack(event) {
       const { activeIndex, tracks } = this.state;
-      this.playTrack(activeIndex === tracks.length - 1 ? 0 : activeIndex + 1);
+      //this.playTrack(activeIndex === tracks.length - 1 ? 0 : activeIndex + 1);
+      if (activeIndex === 1){
+
+      }else{
+        this.clearTrack();
+        this.playTrack(activeIndex + 1);
+        $(event.target).parent().find(".ai-tracklist-next").css("background-color", "#CB5019");
+        $(event.target).parent().find(".ai-tracklist-prev").css("background-color", "#67686B");
+        $(event.target).parent().find(".ai-track-progress").css("background-color", "#CB5019");
+      }
     }
 
     prevTrack() {
       const { activeIndex, tracks } = this.state;
-      this.playTrack(activeIndex === 0 ? tracks.length - 1 : activeIndex - 1);
+      //this.playTrack(activeIndex === 0 ? tracks.length - 1 : activeIndex - 1);
+      if (activeIndex === 0){
+
+      }else{
+        this.clearTrack();
+        this.playTrack(activeIndex - 1);
+        $(event.target).parent().find(".ai-tracklist-prev").css("background-color", "#3B393D");
+        $(event.target).parent().find(".ai-tracklist-next").css("background-color", "#67686B");
+        $(event.target).parent().find(".ai-track-progress").css("background-color", "#3B393D");
+      }
     }
 
     toggleTracklistCycling() {
@@ -276,12 +309,15 @@ const soundProvider = (Player, events) => {
     render() {
       const { tracks, playStatus, position, volume, playbackRate } = this.state;
       const finalProps = this.getFinalProps();
-
+      
       return (
+        
         <div className="ai-audioigniter">
+          <input type='hidden' id='act-id' class='act-class' value='d'></input>
           <Player {...finalProps} />
 
           {tracks.length > 0 && (
+            
             <Sound
               url={finalProps.currentTrack.audio}
               playStatus={playStatus}

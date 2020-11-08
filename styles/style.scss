@@ -7,6 +7,9 @@ $black: #000 !default;
 $white: #fff !default;
 $bg-color: #202020 !default;
 $primary-color: #f70f5d !default;
+$button-color: #67686B;
+$progress-color: #3B393D;
+$mastered-color: #CB5019;
 $text-on-primary: #ffffff !default;
 $text-color: #ffffff !default;
 $control-color: #3e3e3e !default;
@@ -145,15 +148,18 @@ $screen-xs-max: 320px !default;
 		flex: none;
 		vertical-align: middle;
 		color: $text-on-primary;
-		background-color: $primary-color;
+		background-color: $button-color;
 		opacity: 1;
 		transition: opacity $loading-transition-time ease;
 		padding: 0;
 
-		&:hover,
+		&:hover {
+			//border: 0;
+			//background-color: $primary-color;
+		}
 		&:focus {
-			border: 0;
-			background-color: $primary-color;
+			outline: none;
+			box-shadow: none;
 		}
 
 		&.ai-audio-playing {
@@ -168,6 +174,7 @@ $screen-xs-max: 320px !default;
 			position: relative;
 			left: 2px;
 			top: 1px;
+			margin: auto;
 		}
 	}
 
@@ -222,8 +229,10 @@ $screen-xs-max: 320px !default;
 		position: relative;
 		height: 5px;
 		cursor: pointer;
-		background-color: $control-color;
-
+		background-color: $button-color;
+		&:focus {
+			background-color: $progress-color;
+		}
 		@at-root .ai-wrap .ai-track .ai-track-progress-bar {
 			position: absolute;
 			top: auto;
@@ -245,7 +254,7 @@ $screen-xs-max: 320px !default;
 		left: 0;
 		height: 100%;
 		pointer-events: none;
-		background-color: $primary-color;
+		background-color: $progress-color;
 		transition: width .28s ease;
 
 		@at-root .ai-wrap .ai-track .ai-track-progress {
@@ -338,8 +347,10 @@ $screen-xs-max: 320px !default;
 	// Audio Controls
 	//
 	.ai-audio-controls-meta {
+		
 		@include clearfix;
 		display: flex;
+		display: none;
 		width: 100%;
 		opacity: 1;
 		transition: opacity $transition-time*2 ease;
@@ -350,19 +361,19 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-btn {
-		width: 32px;
+		width: 110px;
 		height: 34px;
 		font-size: 14px;
 		padding: 0;
 		background-image: none;
-		background-color: $control-color;
+		background-color: $button-color;
 		color: $text-color;
 		transition: color $transition-time ease;
 		box-shadow: none;
     text-decoration: none;
     font-style: normal;
     text-transform: none;
-
+	
 		svg {
 			position: relative;
 			fill: $text-color;
@@ -371,7 +382,7 @@ $screen-xs-max: 320px !default;
 		}
 
 		&:hover {
-			color: $primary-color;
+			//color: $primary-color;
 			background-color: $control-color;
 			border: 0;
 
@@ -379,7 +390,7 @@ $screen-xs-max: 320px !default;
 				fill: $primary-color;
 			}
 		}
-
+		
 		&.ai-btn-active {
 			color: $text-on-primary;
 			background-color: $primary-color;
@@ -414,7 +425,30 @@ $screen-xs-max: 320px !default;
     font-weight: bold;
     letter-spacing: -.05em;
   }
-
+  .ai-tracklist-next {
+	   margin-left: 20px;
+	   &:active {
+		background-color: $mastered-color;
+	   }
+	   &:focus {
+		background-color: $mastered-color;
+		outline: none;
+	   	box-shadow: none;
+	   }
+	   
+	   
+  }
+  .ai-tracklist-prev {
+	&:active {
+		background-color: $progress-color;
+	}
+	&:focus {
+		background-color: $progress-color;
+		outline: none;
+		box-shadow: none;
+	}
+	
+}
 	//
 	// Playlist
 	//
@@ -638,6 +672,11 @@ $screen-xs-max: 320px !default;
 
 		.ai-audio-control {
 			opacity: 0.5;
+			&:focus{
+				outline: none;
+			box-shadow: none;
+			}
+			
 		}
 
 		.ai-control-wrap-thumb {
@@ -805,8 +844,7 @@ $screen-xs-max: 320px !default;
   color: $black;
 
   &:hover,
-  &:active,
-	&:focus {
+  &:active {
     background: none;
     box-shadow: none;
     border: 0;
@@ -908,3 +946,4 @@ $screen-xs-max: 320px !default;
 		@include xs-max;
 	}
 }
+

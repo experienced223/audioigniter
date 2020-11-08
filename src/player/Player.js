@@ -9,6 +9,8 @@ import Time from './components/Time';
 import VolumeControl from './components/VolumeControl';
 import Button from './components/Button';
 import Cover from './components/Cover';
+
+
 import {
   PlayIcon,
   PauseIcon,
@@ -32,6 +34,8 @@ class Player extends React.Component {
     this.toggleTracklist = this.toggleTracklist.bind(this);
     this.isNarrowContext = this.isNarrowContext.bind(this);
   }
+
+ 
 
   isNarrowContext() {
     return this.root && this.root.offsetWidth < 480 && window.innerWidth > 480;
@@ -85,14 +89,15 @@ class Player extends React.Component {
       repeatingTrackIndex,
       skipAmount,
       skipPosition,
+      progressbarcolor
     } = this.props;
 
     return (
       <div
         ref={ref => (this.root = ref)} // eslint-disable-line no-return-assign
-        className={`ai-wrap ai-type-full ${
+        className={`deactive ai-wrap ai-type-full ${
           tracks.length ? '' : 'ai-is-loading'
-        }${this.isNarrowContext() ? 'ai-narrow' : ''}`}
+        }${this.isNarrowContext() ? 'ai-narrow' : ''}`} value="com"
         style={{ maxWidth }}
       >
         <div className="ai-control-wrap">
@@ -107,7 +112,7 @@ class Player extends React.Component {
           <div className="ai-control-wrap-controls">
             <div className="ai-audio-controls-main">
               <Button
-                onClick={togglePlay}
+                onClick={(togglePlay)}
                 className={`ai-audio-control ${
                   playStatus === Sound.status.PLAYING ? 'ai-audio-playing' : ''
                 }`}
@@ -117,6 +122,7 @@ class Player extends React.Component {
                     : sprintf(aiStrings.play_title, currentTrack.title)
                 }
                 ariaPressed={playStatus === Sound.status.PLAYING}
+                
               >
                 {playStatus === Sound.status.PLAYING ? (
                   <PauseIcon />
@@ -126,15 +132,17 @@ class Player extends React.Component {
               </Button>
 
               <div className="ai-track-info">
-                <p className="ai-track-title">
-                  <span>{currentTrack.title}</span>
-                </p>
+                
                 {(tracks.length === 0 || currentTrack.subtitle) &&
                   displayArtistNames && (
                     <p className="ai-track-subtitle">
                       <span>{currentTrack.subtitle}</span>
+                      <span style={{float:"right"}}>Genre</span>
                     </p>
                   )}
+                <p className="ai-track-title">
+                  <span>{currentTrack.title}</span>
+                </p>
               </div>
             </div>
 
@@ -147,7 +155,24 @@ class Player extends React.Component {
 
               <Time duration={duration} position={position} />
             </div>
-
+            
+              <Button
+                  className="ai-btn ai-tracklist-prev"
+                  onClick={prevTrack}
+                  ariaLabel={aiStrings.previous}
+                  title={aiStrings.previous}
+                >
+                  ORIGINAL
+              </Button>
+              <Button
+                  className="ai-btn ai-tracklist-next"
+                  onClick={nextTrack}
+                  ariaLabel={aiStrings.next}
+                  title={aiStrings.next}
+                >
+                  MASTERED
+              </Button>
+            
             <div className="ai-audio-controls-meta">
               {tracks.length > 1 && (
                 <Button
@@ -307,6 +332,7 @@ Player.propTypes = {
   nextTrack: PropTypes.func.isRequired,
   prevTrack: PropTypes.func.isRequired,
   setPosition: PropTypes.func.isRequired,
+  setProgressbar: PropTypes.func.isRequired,
   setVolume: PropTypes.func.isRequired,
   toggleTracklistCycling: PropTypes.func.isRequired,
   setTrackCycling: PropTypes.func.isRequired,

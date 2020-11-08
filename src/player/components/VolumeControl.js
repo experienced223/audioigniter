@@ -23,7 +23,6 @@ export default class VolumeControl extends React.Component {
 
     return (
       <div className="ai-audio-volume-control">
-        <div>fdsadsafsadfsdafsdafsdaf</div>
         <div className="ai-audio-volume-bars">{this.renderVolumeBars()}</div>
 
         <div className="ai-audio-volume-control-btns">
@@ -42,7 +41,6 @@ export default class VolumeControl extends React.Component {
             <VolumeDownIcon />
           </Button>
         </div>
-
       </div>
     );
   }
