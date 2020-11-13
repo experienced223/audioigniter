@@ -117,11 +117,11 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  min-height: 130px;
+  min-height: 85px;
 }
 
 .ai-wrap .ai-control-wrap-thumb {
-  width: 130px;
+  width: 85px;
   height: 100%;
   -webkit-box-flex: 0;
   -webkit-flex: none;
@@ -185,12 +185,12 @@
   -ms-flex-align: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 3px;
 }
 
 .ai-wrap .ai-audio-control {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: inline-block;
   -webkit-box-flex: 0;
@@ -284,7 +284,7 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 6px;
 }
 
 .ai-wrap .ai-track-progress-bar {
@@ -489,8 +489,8 @@
 }
 
 .ai-wrap .ai-btn {
-  width: 110px;
-  height: 34px;
+  width: 90px;
+  height: 21px;
   font-size: 14px;
   padding: 0;
   background-image: none;
@@ -513,7 +513,7 @@
 }
 
 .ai-wrap .ai-btn:hover {
-  background-color: #3e3e3e;
+  background-color: #3B393D;
   border: 0;
 }
 
@@ -557,6 +557,10 @@
   margin-left: 20px;
 }
 
+.ai-wrap .ai-tracklist-next:hover {
+  background-color: #CB5019;
+}
+
 .ai-wrap .ai-tracklist-next:active {
   background-color: #CB5019;
 }
@@ -565,6 +569,14 @@
   background-color: #CB5019;
   outline: none;
   box-shadow: none;
+}
+
+.ai-wrap .ai-tracklist-prev {
+  background-color: #3B393D;
+}
+
+.ai-wrap .ai-tracklist-prev:hover {
+  background-color: #3B393D;
 }
 
 .ai-wrap .ai-tracklist-prev:active {

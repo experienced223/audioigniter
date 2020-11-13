@@ -14,7 +14,7 @@ $text-on-primary: #ffffff !default;
 $text-color: #ffffff !default;
 $control-color: #3e3e3e !default;
 
-$player-height: 130px !default;
+$player-height: 85px !default;
 $transition-time: .18s !default;
 $loading-transition-time: 1.5s !default;
 $text-opacity: .7 !default;
@@ -99,7 +99,7 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-control-wrap-thumb {
-		width: 130px;
+		width: 85px;
 		height: 100%;
 		flex: none;
 		overflow: hidden;
@@ -137,12 +137,12 @@ $screen-xs-max: 320px !default;
 		display: flex;
 		align-items: center;
 		width: 100%;
-		margin-bottom: $spacing - 4px;
+		margin-bottom: $spacing - 17px;
 	}
 
 	.ai-audio-control {
-		width: 50px;
-		height: 50px;
+		width: 30px;
+		height: 30px;
 		border-radius: 50%;
 		display: inline-block;
 		flex: none;
@@ -220,7 +220,7 @@ $screen-xs-max: 320px !default;
 	.ai-audio-controls-progress {
 		display: flex;
 		align-items: center;
-		margin-bottom: $spacing - 5px;
+		margin-bottom: $spacing - 14px;
 	}
 
 	.ai-track-progress-bar {
@@ -361,8 +361,8 @@ $screen-xs-max: 320px !default;
 	}
 
 	.ai-btn {
-		width: 110px;
-		height: 34px;
+		width: 90px;
+		height: 21px;
 		font-size: 14px;
 		padding: 0;
 		background-image: none;
@@ -383,7 +383,7 @@ $screen-xs-max: 320px !default;
 
 		&:hover {
 			//color: $primary-color;
-			background-color: $control-color;
+			background-color: $progress-color;
 			border: 0;
 
 			svg {
@@ -427,6 +427,9 @@ $screen-xs-max: 320px !default;
   }
   .ai-tracklist-next {
 	   margin-left: 20px;
+	   &:hover {
+		background-color: $mastered-color;
+	   }
 	   &:active {
 		background-color: $mastered-color;
 	   }
@@ -439,6 +442,11 @@ $screen-xs-max: 320px !default;
 	   
   }
   .ai-tracklist-prev {
+	  background-color: $progress-color;
+	  &:hover {
+		  background-color: $progress-color;
+	  }
+	
 	&:active {
 		background-color: $progress-color;
 	}
