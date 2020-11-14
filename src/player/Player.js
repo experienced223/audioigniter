@@ -137,7 +137,7 @@ class Player extends React.Component {
                   displayArtistNames && (
                     <p className="ai-track-subtitle">
                       <span>{currentTrack.subtitle}</span>
-                      <span style={{float:"right"}}>Genre</span>
+                      <span style={{float:"right"}}>{currentTrack.buyUrl}</span>
                     </p>
                   )}
                 <p className="ai-track-title">
